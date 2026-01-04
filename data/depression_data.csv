@@ -1,0 +1,88 @@
+Education Level,Sleep Patterns,Physical Activity Level,Marital Status,Smoking Status,Age,Income,Number of Children,History of Mental Illness
+High School,Good,Moderate,Married,No,35,50000,2,No
+Bachelor's,Good,High,Single,No,28,60000,0,No
+Master's,Poor,Low,Married,Yes,45,80000,3,Yes
+High School,Fair,Moderate,Divorced,No,50,40000,1,No
+Bachelor's,Good,High,Single,No,25,55000,0,No
+Associate,Poor,Low,Married,Yes,40,45000,2,Yes
+Master's,Good,Moderate,Single,No,30,70000,1,No
+High School,Fair,High,Married,No,55,35000,4,No
+Bachelor's,Poor,Low,Divorced,Yes,38,50000,2,Yes
+Associate,Good,Moderate,Single,No,27,48000,0,No
+Master's,Good,High,Married,No,42,90000,3,No
+High School,Poor,Low,Married,Yes,48,42000,2,Yes
+Bachelor's,Fair,Moderate,Single,No,32,65000,1,No
+Associate,Good,High,Divorced,No,52,38000,3,No
+Master's,Poor,Low,Married,Yes,37,75000,2,Yes
+High School,Good,Moderate,Single,No,29,52000,0,No
+Bachelor's,Good,High,Married,No,46,85000,4,No
+Associate,Fair,Low,Divorced,Yes,41,43000,1,Yes
+Master's,Good,Moderate,Single,No,26,58000,0,No
+High School,Poor,High,Married,No,53,36000,3,No
+Bachelor's,Good,Low,Single,Yes,33,62000,1,No
+Associate,Poor,Moderate,Married,No,44,47000,2,Yes
+Master's,Fair,High,Divorced,No,39,78000,2,No
+High School,Good,Low,Single,No,31,54000,0,No
+Bachelor's,Poor,Moderate,Married,Yes,47,41000,3,Yes
+Associate,Good,High,Single,No,24,56000,0,No
+Master's,Fair,Low,Married,No,49,72000,4,No
+High School,Poor,Moderate,Divorced,Yes,36,49000,1,Yes
+Bachelor's,Good,High,Single,No,34,67000,2,No
+Associate,Good,Low,Married,No,43,46000,2,No
+Master's,Poor,Moderate,Single,Yes,27,59000,0,No
+High School,Fair,High,Married,No,51,37000,3,No
+Bachelor's,Good,Low,Divorced,No,40,64000,1,Yes
+Associate,Poor,Moderate,Single,Yes,30,53000,0,No
+Master's,Good,High,Married,No,48,82000,3,No
+High School,Fair,Low,Single,No,35,50000,2,No
+Bachelor's,Poor,Moderate,Married,Yes,42,44000,2,Yes
+Associate,Good,High,Divorced,No,54,34000,4,No
+Master's,Fair,Low,Single,No,29,61000,1,No
+High School,Good,Moderate,Married,No,46,39000,3,No
+Bachelor's,Poor,High,Single,Yes,38,68000,2,Yes
+Associate,Good,Low,Married,No,41,48000,1,No
+Master's,Fair,Moderate,Divorced,No,33,73000,2,No
+High School,Poor,High,Single,No,26,57000,0,No
+Bachelor's,Good,Low,Married,Yes,50,40000,4,Yes
+Associate,Fair,Moderate,Single,No,37,51000,0,No
+Master's,Poor,High,Married,No,45,76000,3,No
+High School,Good,Low,Divorced,Yes,32,63000,1,Yes
+Bachelor's,Fair,Moderate,Single,No,28,55000,0,No
+Associate,Poor,High,Married,No,49,42000,2,No
+Master's,Good,Low,Single,Yes,36,69000,2,Yes
+High School,Fair,Moderate,Married,No,43,45000,3,No
+Bachelor's,Poor,High,Divorced,No,31,52000,0,No
+Associate,Good,Low,Single,No,47,38000,1,No
+Master's,Fair,Moderate,Married,Yes,39,71000,2,Yes
+High School,Poor,High,Single,No,25,58000,0,No
+Bachelor's,Good,Low,Married,No,52,36000,4,No
+Associate,Fair,Moderate,Divorced,Yes,34,64000,1,Yes
+Master's,Poor,High,Single,No,40,74000,2,No
+High School,Good,Low,Married,No,48,41000,3,No
+Bachelor's,Fair,Moderate,Single,Yes,30,60000,0,No
+Associate,Poor,High,Married,No,44,47000,2,Yes
+Master's,Good,Low,Divorced,No,35,78000,2,No
+High School,Fair,Moderate,Single,No,27,54000,0,No
+Bachelor's,Poor,High,Married,Yes,51,37000,3,Yes
+Associate,Good,Low,Single,No,38,65000,1,No
+Master's,Fair,Moderate,Married,No,46,72000,4,No
+High School,Poor,High,Divorced,Yes,33,49000,0,Yes
+Bachelor's,Good,Low,Single,No,41,56000,2,No
+Associate,Fair,Moderate,Married,No,49,43000,3,No
+Master's,Poor,High,Single,Yes,29,67000,1,Yes
+High School,Good,Low,Married,No,37,50000,2,No
+Bachelor's,Fair,Moderate,Divorced,No,45,39000,1,No
+Associate,Poor,High,Single,No,32,61000,0,No
+Master's,Good,Low,Married,Yes,50,75000,3,Yes
+High School,Fair,Moderate,Single,No,28,53000,0,No
+Bachelor's,Poor,High,Married,No,42,46000,2,No
+Associate,Good,Low,Divorced,Yes,39,68000,1,Yes
+Master's,Fair,Moderate,Single,No,47,71000,4,No
+High School,Poor,High,Married,No,35,42000,2,No
+Bachelor's,Good,Low,Single,Yes,31,59000,0,No
+Associate,Fair,Moderate,Married,No,48,38000,3,No
+Master's,Poor,High,Divorced,No,36,73000,2,Yes
+High School,Good,Low,Single,No,26,55000,0,No
+Bachelor's,Fair,Moderate,Married,Yes,44,40000,1,No
+Associate,Poor,High,Single,No,40,62000,2,No
+Master's,Good,Low,Married,No,52,69000,4,Yes
