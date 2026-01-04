@@ -3,24 +3,24 @@ from sklearn.preprocessing import OrdinalEncoder, StandardScaler
 
 def preprocess_data(df):
     """Handle missing values and apply encoding/scaling."""
-    # Drop unnecessary columns
-    if 'Name' in df.columns:
-        df.drop('Name', axis=1, inplace=True)
+    # Select relevant columns as per API requirements
+    relevant_cols = [
+        'Age', 'Income', 'Education Level', 'Sleep Patterns', 
+        'Physical Activity Level', 'Marital Status', 'Smoking Status', 
+        'Number of Children', 'Depression Indicator'
+    ]
+    df = df[relevant_cols]
     
     # Drop rows with missing target
     df = df.dropna(subset=['Depression Indicator'])
 
     # Define columns
-    ordinal_features = ['Education Level', 'Sleep Patterns', 'Physical Activity Level', 'Smoking Status', 'Employment Status', 'Alcohol Consumption', 'Dietary Habits']
-    nominal_features = ['Marital Status']
+    ordinal_features = ['Education Level', 'Sleep Patterns', 'Physical Activity Level']
+    nominal_features = ['Marital Status', 'Smoking Status']
     numerical_features = ['Age', 'Income', 'Number of Children']
-    
-    # Get all categorical columns for imputation
-    categorical_cols = df.select_dtypes(include=['object']).columns.tolist()
-    if 'Depression Indicator' in categorical_cols:
-        categorical_cols.remove('Depression Indicator')
 
     # Impute missing values
+    categorical_cols = ordinal_features + nominal_features
     for col in categorical_cols:
         if df[col].isnull().sum() > 0:
             df[col] = df[col].fillna(df[col].mode()[0])
@@ -28,6 +28,25 @@ def preprocess_data(df):
     for col in numerical_features:
         if df[col].isnull().sum() > 0:
             df[col] = df[col].fillna(df[col].median())
+
+    # Encode target
+    df['Depression Indicator'] = df['Depression Indicator'].map({'Yes': 1, 'No': 0})
+
+    # Ordinal encoding
+    ordinal_encoder = OrdinalEncoder()
+    df[ordinal_features] = ordinal_encoder.fit_transform(df[ordinal_features])
+
+    # One-hot encoding
+    df = pd.get_dummies(df, columns=nominal_features, drop_first=True)
+
+    # Standard scaling
+    scaler = StandardScaler()
+    df[numerical_features] = scaler.fit_transform(df[numerical_features])
+
+    # Get feature columns after preprocessing
+    feature_cols = df.drop('Depression Indicator', axis=1).columns.tolist()
+
+    return df, ordinal_encoder, scaler, feature_cols
 
     # Encode target
     df['Depression Indicator'] = df['Depression Indicator'].map({'Yes': 1, 'No': 0})

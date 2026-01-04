@@ -1,67 +1,136 @@
-Prompt:
-You are an expert ML engineer. Write a complete Python script to build a mental health prediction model using the Modified depression_data with a new target column dataset from Kaggle.
+# GitHub Copilot Prompt — Real-Time ML Prediction API (No .h5)
 
-The CSV file is named depression_data.csv. The target column is Depression Indicator (binary: 0/1).
+You are a **senior ML + backend engineer**.
 
-Data Preprocessing:
+Build a **production-ready machine learning system** that can:
 
-Load the dataset with pandas.
+- Train a mental health risk prediction model
+- Persist the trained model and preprocessing artifacts
+- Serve **real-time predictions via an HTTP API**
 
-Handle missing values reasonably (drop or impute).
+This system is based on **tabular data** and **scikit-learn models**.  
+⚠️ Do **NOT** use TensorFlow, Keras, or `.h5` files.
 
-Apply:
+---
 
-OrdinalEncoder to ordinal categorical features (e.g., education, sleep quality, activity level if present).
+## Dataset
 
-pd.get_dummies(drop_first=True) for nominal categorical features.
+- Source: Kaggle — _Modified depression_data with a new target column_
+- CSV file: `depression_data.csv`
+- Target column: `Depression Indicator` (binary: 0/1)
 
-StandardScaler for numeric features (e.g., age, income, etc.).
+---
 
-Train-Test Split:
+## Modeling Requirements
 
-Use train_test_split with test_size=0.2, stratify=y, and random_state=42.
+### 1. Preprocessing
 
-Models:
+- Load data using `pandas`
+- Handle missing values safely
+- Apply:
+  - `OrdinalEncoder` for ordered categorical features (e.g. education level, sleep pattern, physical activity)
+  - `pd.get_dummies(drop_first=True)` for nominal categorical features
+  - `StandardScaler` for numeric features (e.g. age, income, number_of_children)
 
-Train a baseline Logistic Regression (solver='liblinear', class_weight='balanced').
+⚠️ Preprocessing objects **must be reusable for inference**.
 
-Train a RandomForestClassifier with class_weight='balanced' and initial n_estimators=200.
+---
 
-Hyperparameter Tuning:
+### 2. Train-Test Split
 
-Use RandomizedSearchCV with 5-fold cross-validation optimizing scoring='f1'.
+- 80/20 split
+- Use `stratify=y`
+- `random_state=42`
 
-Search space includes: n_estimators, max_depth, min_samples_split, min_samples_leaf, max_features.
+---
 
-Ensemble:
+### 3. Models
 
-Build a Soft Voting Classifier combining Logistic Regression, tuned Random Forest, and Gradient Boosting.
+- Baseline: `LogisticRegression`
+  - `solver="liblinear"`
+  - `class_weight="balanced"`
+- Primary model: `RandomForestClassifier`
+  - `class_weight="balanced"`
+  - Start with `n_estimators=200`
 
-Evaluation:
+---
 
-Print classification report, confusion matrix, and ROC curve with AUC.
+### 4. Hyperparameter Tuning
 
-Focus on F1-score and recall due to class imbalance.
+- Use `RandomizedSearchCV`
+- 5-fold cross-validation
+- `scoring="f1"`
+- Tune:
+  - `n_estimators`
+  - `max_depth`
+  - `min_samples_split`
+  - `min_samples_leaf`
+  - `max_features`
 
-Use only: pandas, scikit-learn, matplotlib.
+---
 
-📌 Adaptation Notes
+### 5. Ensemble
 
-✔ The target column in this dataset is Depression Indicator (binary classification).
-Kaggle
+- Build a **Soft Voting Classifier** using:
+  - Logistic Regression
+  - Tuned Random Forest
+  - Gradient Boosting Classifier
 
-✔ You can treat this dataset exactly like the original Anthony Therrien dataset you planned — just replace the target variable in the code with Depression Indicator.
+---
 
-✔ If the dataset doesn’t have specific ordinal features (like sleep or activity levels), you can adjust by treating those fields as either encoded categorical features or numerical, depending on the actual column types once you inspect the CSV.
+### 6. Evaluation
 
-📝 Quick Example: How to Rename Target in Your Code
+- Print:
+  - Classification report
+  - Confusion matrix
+- Plot:
+  - ROC curve with AUC
+- Primary metric: **F1-score**
+- Prioritize **Recall** (clinical relevance)
 
-In your ML script, replace:
+---
 
-y = df["History of Mental Illness"]
+## Model Persistence (CRITICAL)
 
-with:
+Persist the following using **`joblib`**:
 
-y = df["Depression Indicator"]
+- Trained model (`model.joblib`)
+- Scaler (`scaler.joblib`)
+- Encoders (`ordinal_encoder.joblib`, dummy column metadata)
 
-and keep the rest of the pipeline the same.
+❌ Do NOT use `.h5`  
+❌ Do NOT retrain or refit encoders during inference
+
+---
+
+## API Requirements (FastAPI)
+
+### Endpoint
+
+- `POST /predict`
+
+### Input
+
+Accept JSON payload representing a single patient:
+
+- age
+- income
+- education_level
+- sleep_pattern
+- physical_activity
+- marital_status
+- smoking_status
+- number_of_children
+
+### Behavior
+
+- Load persisted model and preprocessors at startup
+- Apply **the exact same preprocessing pipeline**
+- Return:
+
+```json
+{
+  "depression_risk": 0 or 1,
+  "risk_probability": float
+}
+```

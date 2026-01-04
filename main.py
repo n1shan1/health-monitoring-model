@@ -10,7 +10,7 @@ from sklearn.model_selection import train_test_split
 
 # Load and preprocess data
 df = load_data('data/depression.csv')
-df = preprocess_data(df)
+df, ordinal_encoder, scaler, feature_cols = preprocess_data(df)
 
 # Prepare X and y
 X = df.drop('Depression Indicator', axis=1)
@@ -61,3 +61,12 @@ predictions_dict = {
     'Voting Classifier': voting_pred
 }
 compare_models(y_test, predictions_dict, probas_dict)
+
+# Persist artifacts
+import joblib
+joblib.dump(voting_clf, 'models/model.joblib')
+joblib.dump(scaler, 'models/scaler.joblib')
+joblib.dump(ordinal_encoder, 'models/ordinal_encoder.joblib')
+joblib.dump(feature_cols, 'models/feature_cols.joblib')
+
+print("Model and preprocessing artifacts saved to models/")
